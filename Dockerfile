@@ -13,7 +13,7 @@ ENV  DB_SCHEMA public
 ENV  DB_USER $DATABASE_USER
 ENV  DB_ADDR $DB_HOST
 ENV  DB_PASSWORD $DATABASE_PASSWORD
-ENV  DB_VENDOR MYSQL
+#ENV  DB_VENDOR MYSQL
 ENV  DB_DATABASE $DATABASE_NAME
 
 # Env Vars
@@ -32,7 +32,7 @@ ENV LANG en_US.UTF-8
 
 # Clustering Variables
 
-ENV JGROUPS_DISCOVERY_PROTOCOL "JDBC_PING"
+#ENV JGROUPS_DISCOVERY_PROTOCOL "JDBC_PING"
 ENV JGROUPS_DISCOVERY_PROPERTIES "datasource_jndi_name=java:jboss/datasources/KeycloakDS,info_writer_sleep_time=500"
 ENV CACHE_OWNERS_AUTH_SESSIONS_COUNT "2"
 ENV CACHE_OWNERS_COUNT "2"
@@ -48,7 +48,6 @@ RUN microdnf update -y && microdnf install -y findutils vim-common vim-enhanced 
 RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && yum update
 RUN yum -y install procps
 RUN mkdir -p /opt/jboss/startup-scripts/
-COPY startup-scripts /opt/jboss/startup-scripts/
 COPY tools /opt/jboss/tools/
 WORKDIR /opt/jboss/tools/
 RUN /bin/sh build-keycloak.sh
